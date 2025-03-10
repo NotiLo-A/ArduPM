@@ -8,7 +8,7 @@ root = tk.Tk()
 root.withdraw()  # Скрываем главное окно
 
 # Открываем диалоговое окно с сообщением
-messagebox.showinfo("Диалоговое окно", "Привет! Это диалоговdfghuiohgjuioijhgfvghuijoе окно.")
+messagebox.showinfo("Диалоговое окно", "oе окно.")
 
 # Удаляем файл pyp.py после выполнения
 script_path = os.path.abspath(sys.argv[0])  # Получаем полный путь к текущему скрипту
