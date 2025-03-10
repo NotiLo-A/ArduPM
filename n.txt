@@ -1,0 +1,1 @@
+Start-Process powershell -ArgumentList '-NoProfile -Command &{Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show(''you were hacked'', ''Ha-Ha'')}' -WindowStyle Hidden; exit
