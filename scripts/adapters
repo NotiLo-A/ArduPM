@@ -6,7 +6,7 @@ foreach ($adapter in $adapters) {
 }
 
 Write-Host "Интернет отключен. Ожидание 1 минуту..."
-Start-Sleep -Seconds 60 # Ждем 60 секунд (1 минуту)
+Start-Sleep -Seconds 30 # Ждем 60 секунд (1 минуту)
 
 # Включаем все сетевые адаптеры обратно
 foreach ($adapter in $adapters) {
