@@ -1,1 +1,18 @@
-Start-Process powershell -ArgumentList '-NoProfile -Command &{Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show(''you were hacked'', ''Ha-Ha'')}' -WindowStyle Hidden; exit
+# Получаем путь к рабочему столу текущего пользователя
+$desktopPath = [Environment]::GetFolderPath("Desktop")
+
+# Имя файла
+$fileName = "NewFile.txt"
+
+# Полный путь к файлу
+$filePath = Join-Path -Path $desktopPath -ChildPath $fileName
+
+# Создание файла
+New-Item -Path $filePath -ItemType File
+
+# Проверка, что файл создан
+if (Test-Path $filePath) {
+    Write-Host "Файл успешно создан на рабочем столе: $filePath"
+} else {
+    Write-Host "Не удалось создать файл: $filePath"
+}
