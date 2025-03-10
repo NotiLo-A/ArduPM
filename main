@@ -1,3 +1,0 @@
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/NotiLo-A/ArduPM/scripts/main/hello" -OutFile "sin"
-
-Invoke-Expression (Get-Content -Path "sin" -Raw)

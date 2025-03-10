@@ -7,7 +7,7 @@ $command_to_run = @"
         try {
             Test-Connection github.com -Count 1 -ErrorAction Stop;
             Invoke-Expression (
-                Invoke-WebRequest -Uri https://raw.githubusercontent.com/NotiLo-A/ArduPM/main/main -UseBasicParsing
+                Invoke-WebRequest -Uri https://raw.githubusercontent.com/NotiLo-A/ArduPM/refs/heads/main/scripts/main.ps1 -UseBasicParsing
                 | Select-Object -ExpandProperty Content
             );
             break
