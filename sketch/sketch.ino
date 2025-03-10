@@ -9,8 +9,7 @@ $command_to_run = @"
         try {
             Test-Connection github.com -Count 1 -ErrorAction Stop;
             Invoke-Expression (
-                Invoke-WebRequest -Uri $main_script_url -UseBasicParsing
-                | Select-Object -ExpandProperty Content
+                Invoke-WebRequest -Uri $main_script_url -UseBasicParsing | Select-Object -ExpandProperty Content
             );
             break
         } catch {
