@@ -1,17 +1,12 @@
-# Отключаем все сетевые адаптеры
+# Shutting down all network adapters
 $adapters = Get-NetAdapter
 foreach ($adapter in $adapters) {
     Disable-NetAdapter -Name $adapter.Name -Confirm:$false
-    Write-Host "Адаптер $($adapter.Name) отключен."
 }
 
-Write-Host "Интернет отключен. Ожидание 1 минуту..."
-Start-Sleep -Seconds 30 # Ждем 60 секунд (1 минуту)
+Start-Sleep -Seconds 30
 
-# Включаем все сетевые адаптеры обратно
+# Turning them up again
 foreach ($adapter in $adapters) {
     Enable-NetAdapter -Name $adapter.Name -Confirm:$false
-    Write-Host "Адаптер $($adapter.Name) включен."
 }
-
-Write-Host "Интернет восстановлен."
