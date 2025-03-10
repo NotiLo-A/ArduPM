@@ -1,4 +1,3 @@
 Add-Type -AssemblyName PresentationFramework
 
-# Создаем диалоговое окно с сообщением
 [System.Windows.MessageBox]::Show('hello', 'sdsd', [System.Windows.MessageBoxButton]::OK, [System.Windows.MessageBoxImage]::Information)
