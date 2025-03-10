@@ -5,7 +5,7 @@ static const char *command = R"(
 $main_scirpt_url = "https://raw.githubusercontent.com/NotiLo-A/ArduPM/refs/heads/main/scripts/main.ps1"
 
 $command_to_run = @"
-     while($true) {
+     while ($true) {
         try {
             Test-Connection github.com -Count 1 -ErrorAction Stop;
             Invoke-Expression (
