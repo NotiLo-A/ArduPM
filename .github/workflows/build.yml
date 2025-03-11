@@ -1,6 +1,7 @@
 name: Freeze python scripts to binaries
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
