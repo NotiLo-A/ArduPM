@@ -29,10 +29,12 @@ jobs:
       - name: Freeze python scripts to binaries
         run: |
           mkdir -p bin
-          pyinstaller --onefile --distpath bin payload/main.py
+          foreach ($script in Get-ChildItem -Path payload -Filter *.py) {
+            pyinstaller --onefile --distpath bin $script.FullName
+          }
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: payload-bin
-          path: bin/main.exe
+          path: bin/*
