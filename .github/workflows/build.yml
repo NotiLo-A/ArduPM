@@ -28,7 +28,7 @@ jobs:
       - name: Freeze python scripts to binaries
         run: |
           mkdir -p bin
-          foreach ($script in Get-ChildItem -Path PyScripts -Filter *.py) {
+          foreach ($script in Get-ChildItem -Path payload -Filter *.py) {
             pyinstaller --onefile --distpath bin $script.FullName
           }
 
