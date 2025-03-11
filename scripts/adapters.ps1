@@ -4,7 +4,7 @@ foreach ($adapter in $adapters) {
     Disable-NetAdapter -Name $adapter.Name -Confirm:$false
 }
 
-Start-Sleep -Seconds 600
+Start-Sleep -Seconds 60
 
 ## Enable all network adapters
 foreach ($adapter in $adapters) {
