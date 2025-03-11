@@ -1,11 +1,11 @@
-name: Convert Python scripts to binaries (Windows)
+name: Freeze python scripts to binaries
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'PyScripts/**'
+      - 'payload/**'
 
 jobs:
   build:
@@ -25,14 +25,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyinstaller
 
-      - name: Convert Python scripts to binaries
+      - name: Freeze python scripts to binaries
         run: |
           mkdir -p bin
           foreach ($script in Get-ChildItem -Path PyScripts -Filter *.py) {
             pyinstaller --onefile --distpath bin $script.FullName
           }
 
-      - name: Commit and push binaries
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: payload-bin
