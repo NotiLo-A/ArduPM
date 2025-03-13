@@ -1,9 +1,10 @@
-name: Convert Python to EXE
+name: Convert Python to EXE on Windows
 
 on:
   push:
     paths:
       - 'payload/**'
+  workflow_dispatch:  # Добавьте эту строку
 
 jobs:
   convert-to-exe:
