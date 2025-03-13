@@ -42,7 +42,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git change binaries
+          git switch binaries
           git add bin/
           git commit -m "Automated commit: Update frozen binaries"
           git push
