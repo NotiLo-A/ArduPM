@@ -1,40 +1,37 @@
-name: Freeze python scripts to binaries
+name: Convert Python to EXE on Windows
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
     paths:
       - 'payload/**'
 
 jobs:
-  build:
+  convert-to-exe:
     runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.13'
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyinstaller
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller
 
-      - name: Freeze python scripts to binaries
-        run: |
-          mkdir -p bin
-          foreach ($script in Get-ChildItem -Path payload -Filter *.py) {
-            pyinstaller --onefile --distpath bin $script.FullName
-          }
+    - name: Convert .py to .exe
+      run: |
+        if not exist scripts mkdir scripts
+        for %%f in (payload\*.py) do (
+          pyinstaller --onefile --distpath scripts "%%f"
+        )
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: payload-bin
-          path: bin/*
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: scripts
+        path: scripts/
