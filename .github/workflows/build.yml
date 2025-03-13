@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'payload/**'
-  workflow_dispatch:  # Добавьте эту строку
+  workflow_dispatch:
 
 jobs:
   convert-to-exe:
