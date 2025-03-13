@@ -26,10 +26,12 @@ jobs:
 
     - name: Convert .py to .exe
       run: |
-        cmd /c "if not exist scripts mkdir scripts"
-        for %%f in (payload\*.py) do (
-          pyinstaller --onefile --distpath scripts "%%f"
-        )
+        if (-Not (Test-Path -Path scripts)) {
+          New-Item -ItemType Directory -Path scripts
+        }
+        Get-ChildItem -Path payload\*.py | ForEach-Object {
+          pyinstaller --onefile --distpath scripts $_.FullName
+        }
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
