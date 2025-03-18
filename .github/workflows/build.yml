@@ -1,49 +1,43 @@
 name: Freeze python scripts to binaries
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
     paths:
-      - 'payload/**'
+      - 'payload/**.py'
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.13'
+          python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyinstaller
+      - name: Install PyInstaller
+        run: pip install pyinstaller
 
-      - name: Freeze python scripts to binaries
+      - name: Convert Python scripts to EXE
         run: |
-          if (-Not (Test-Path -Path bin)) {
-            New-Item -ItemType Directory -Path bin
-          } else {
-            Remove-Item -Path "bin" -Recurse -Force
-            New-Item -ItemType Directory -Path bin
-          }
-          foreach ($script in Get-ChildItem -Path payload\*.py) {
-            pyinstaller --onefile --distpath bin $script.FullName
-          }
+          mkdir -p bin
+          for file in payload/*.py; do
+            pyinstaller --onefile "$file"
+            mv dist/$(basename "$file" .py).exe bin/
+          done
 
-      - name: Commit and push changes
+      - name: Push binaries to binaries branch
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git fetch origin binaries
-          git switch binaries
-          git add bin/
-          git commit -m "Automated commit: Update frozen binaries"
-          git push
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git checkout binaries || git checkout --orphan binaries
+          mkdir -p bin
+          cp -r bin/* .
+          git add .
+          git commit -m "Update binaries from latest commit"
+          git push origin binaries --force
