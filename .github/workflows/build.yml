@@ -28,8 +28,10 @@ jobs:
           mkdir -p bin
           for file in payload/*.py; do
             pyinstaller --onefile "$file"
-            mv dist/$(basename "$file" .py).exe bin/
+            exe_name=$(basename "$file" .py).exe
+            mv dist/"$exe_name" bin/ || echo "File $exe_name not found!"
           done
+
 
       - name: Push binaries to binaries branch
         run: |
