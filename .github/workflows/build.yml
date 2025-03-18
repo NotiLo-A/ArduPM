@@ -28,10 +28,18 @@ jobs:
           mkdir -p bin
           for file in payload/*.py; do
             pyinstaller --onefile "$file"
-            exe_name=$(basename "$file" .py).exe
-            mv dist/"$exe_name" bin/ || echo "File $exe_name not found!"
           done
 
+      - name: Debug PyInstaller Output
+        run: ls -R dist
+
+      - name: Move EXE files to bin
+        run: |
+          mkdir -p bin
+          mv dist/*.exe bin/ || echo "No EXE files found!"
+
+      - name: Verify Bin Folder
+        run: ls -R bin || echo "Bin folder is empty!"
 
       - name: Push binaries to binaries branch
         run: |
@@ -40,7 +48,6 @@ jobs:
           git checkout binaries || git checkout --orphan binaries
           
           if [ -d "bin" ] && [ "$(ls -A bin)" ]; then
-            mkdir -p bin
             cp -r bin/* .
             git add .
             git commit -m "Update binaries from latest commit"
@@ -48,4 +55,3 @@ jobs:
           else
             echo "No binaries found, skipping commit."
           fi
-
