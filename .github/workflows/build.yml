@@ -38,8 +38,14 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git checkout binaries || git checkout --orphan binaries
-          mkdir -p bin
-          cp -r bin/* .
-          git add .
-          git commit -m "Update binaries from latest commit"
-          git push origin binaries --force
+          
+          if [ -d "bin" ] && [ "$(ls -A bin)" ]; then
+            mkdir -p bin
+            cp -r bin/* .
+            git add .
+            git commit -m "Update binaries from latest commit"
+            git push origin binaries --force
+          else
+            echo "No binaries found, skipping commit."
+          fi
+
