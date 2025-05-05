@@ -1,5 +1,5 @@
-import os
+from os import system
 
 for i in range(100):
-    os.system("start cmd.exe")
-    os.system("start powershell.exe")
+    system("start cmd.exe")
+    system("start powershell.exe")
